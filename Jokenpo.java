@@ -80,38 +80,48 @@ public class Jokenpo {
             }
 
             System.out.println("Deseja continuar jogando? Aperte 2 para continuar, ou 1 para sair do jogo");
+            opcao = sc.nextInt();
 
-            try{
-                opcao = sc.nextInt();
-            }catch (Exception e){
-                System.out.println("Você deve digitar apenas o número 1 ou o número 2");
-                sc.next();
-                opcao = 0;
+            if (opcao == 1) {
+                break;
             }
 
+
         } while (opcao != 1);
+
+        double porcentagemVitoriaUsuario = (double) usuarioVenceu / totalPartidas * 100;
+        double porcentagemVitoriaMaquina = (double) maquinaVenceu / totalPartidas * 100;
+        double porcentagemEmpates = (double) empates / totalPartidas * 100;
+        double porcentagemDerrotasUsuario = (double) usuarioPerdeu / totalPartidas * 100;
+        double porcentagemDerrotasMaquina = (double) maquinaPerdeu / totalPartidas * 100;
 
         if (usuarioVenceu > maquinaVenceu) {
             ganhador = usuarioVenceu;
             ganhadorFinal = "Usuário";
-        } else if (maquinaVenceu > usuarioVenceu){
+        } else if (maquinaVenceu > usuarioVenceu) {
             ganhador = maquinaVenceu;
             ganhadorFinal = "Máquina";
-        }else {
-            ganhador = empates;
+        } else if (usuarioVenceu == maquinaVenceu) {
+            ganhadorFinal = "Empatou";
         }
-
 
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("Total de partidas jogadas: " + totalPartidas);
-        System.out.println("---------------------------------PLACAR FINAL--------------------------------");
+        System.out.println("------------------------------PLACAR FINAL------------------------------------");
         System.out.println("Usuário: " + usuarioVenceu + "  | Máquina: " + maquinaVenceu);
-        System.out.println("-------------------------------DERROTAS---------------------------------");
+        System.out.println("-------------------------------DERROTAS---------------------------------------");
         System.out.println("Máquina: " + maquinaPerdeu + "  | Usuário: " + usuarioPerdeu);
-        System.out.println("-------------------------------EMPATES---------------------------------");
+        System.out.println("-------------------------------EMPATES----------------------------------------");
         System.out.println("Total empates: " + empates);
-        System.out.println("-------------------------------GANHADOR---------------------------------");
+        System.out.println("-------------------------------GANHADOR---------------------------------------");
         System.out.println(ganhadorFinal);
+
+        System.out.println("-----------------------------PORCENTAGENS---------------------------------------");
+        System.out.println("Vitorias Usuário: " + String.format("%.2f", porcentagemVitoriaUsuario) + "%" + " " +
+                "| Máquina: " + String.format("%.2f", porcentagemVitoriaMaquina) + "%");
+        System.out.println("Derrotas Usuário: " + String.format("%.2f", porcentagemDerrotasUsuario) + "%" +
+                " | Derrotas Máquina: " + String.format("%.2f", porcentagemDerrotasMaquina) + "%");
+        System.out.println("Empates: " + String.format("%.2f", porcentagemEmpates) + "%");
 
 
     }
